@@ -1,21 +1,25 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
-import CreateAppointmentScreen from '../screens/CreateAppointmentScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createNativeStackNavigator();
+import WelcomeScreen from '../screens/WelcomeScreen';
+import DataInputScreen from '../screens/DataInputScreen';
+import RiskViewScreen from '../screens/RiskViewScreen';
+import HistoryScreen from '../screens/HistoryScreen';
+import MitigationActionsScreen from '../screens/MitigationActionsScreen';
 
-export default function AppRoutes() {
+const Stack = createStackNavigator();
+
+export default function Routes() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        animation: 'slide_from_right',
-      }}
-    >
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="CreateAppointment" component={CreateAppointmentScreen} />
-      <Stack.Screen name="Profile" component={ProfileScreen} />
-    </Stack.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="DataInput" component={DataInputScreen} />
+        <Stack.Screen name="RiskView" component={RiskViewScreen} />
+        <Stack.Screen name="History" component={HistoryScreen} />
+        <Stack.Screen name="MitigationActions" component={MitigationActionsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

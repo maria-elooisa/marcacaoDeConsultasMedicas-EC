@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "marcacaoDeConsultasMedicas-EC",
-    "slug": "marcacaoDeConsultasMedicas-EC",
+    "name": "monitoramentoDeSolo",
+    "slug": "monitoramentoDeSoloC",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
