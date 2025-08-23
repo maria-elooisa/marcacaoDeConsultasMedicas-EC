@@ -91,42 +91,6 @@ export const authApiService = {
   },
 
   /**
-   * Busca todos os médicos
-   */
-  async getAllDoctors(): Promise<User[]> {
-    try {
-      const doctors = await apiClient.get<ApiUser[]>(API_ENDPOINTS.DOCTORS);
-      return doctors.map(this.mapApiUserToUser);
-    } catch (error) {
-      console.error('Erro ao buscar médicos:', error);
-      throw new Error('Erro ao carregar médicos');
-    }
-  },
-
-  /**
-   * Busca médicos por especialidade
-   */
-  async getDoctorsBySpecialty(specialty: string): Promise<User[]> {
-    try {
-      const doctors = await apiClient.get<ApiUser[]>(
-        `${API_ENDPOINTS.DOCTORS}?especialidade=${encodeURIComponent(specialty)}`
-      );
-      return doctors.map(this.mapApiUserToUser);
-    } catch (error) {
-      console.error('Erro ao buscar médicos por especialidade:', error);
-      throw new Error('Erro ao carregar médicos da especialidade');
-    }
-  },
-
-  /**
-   * Faz logout
-   */
-  async signOut(): Promise<void> {
-    // Remove o token do cliente da API
-    apiClient.setToken(null);
-  },
-
-  /**
    * Mapeia um usuário da API para o formato usado no frontend
    */
   mapApiUserToUser(apiUser: ApiUser): User {
@@ -139,21 +103,11 @@ export const authApiService = {
 
     switch (apiUser.tipo) {
       case 'ADMIN':
-        return {
-          ...baseUser,
-          role: 'admin' as const,
-        };
+        return { ...baseUser, role: 'admin' as const };
       case 'MEDICO':
-        return {
-          ...baseUser,
-          role: 'doctor' as const,
-          specialty: 'Especialidade não informada', // TODO: Buscar da API de especialidades
-        };
+        return { ...baseUser, role: 'doctor' as const, specialty: 'Especialidade não informada' };
       case 'PACIENTE':
-        return {
-          ...baseUser,
-          role: 'patient' as const,
-        };
+        return { ...baseUser, role: 'patient' as const };
       default:
         throw new Error(`Tipo de usuário inválido: ${apiUser.tipo}`);
     }
