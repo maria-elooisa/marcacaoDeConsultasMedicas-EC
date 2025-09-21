@@ -1,4 +1,3 @@
-// screens/LoginScreen/components/LoginForm.tsx
 import React from 'react';
 import styled from 'styled-components/native';
 import { Input, Button, Text } from 'react-native-elements';

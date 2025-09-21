@@ -1,4 +1,3 @@
-// screens/LoginScreen/hooks/useLogin.ts
 import { useState } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 
